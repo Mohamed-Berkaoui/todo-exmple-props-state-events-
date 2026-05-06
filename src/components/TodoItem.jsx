@@ -1,18 +1,14 @@
-function TodoItem({ todo, onToggle, onDelete }) {
+import React from "react";
+
+function TodoItem({ todo }) {
   return (
-    <li className="todo-item">
-      <label className="todo-item-label">
-        <input
-          type="checkbox"
-          checked={todo.completed}
-          onChange={() => onToggle(todo.id)}
-        />
-        <span className={todo.completed ? "is-done" : ""}>{todo.text}</span>
-      </label>
-      <button type="button" onClick={() => onDelete(todo.id)}>
-        Delete
-      </button>
-    </li>
+    <div className="todo-item">
+      <p>{todo.task}</p>
+      <div className="actions">
+        <button className="edit-btn">update status</button>
+        <button className="delete-btn">delete</button>
+      </div>
+    </div>
   );
 }
 
