@@ -90,3 +90,18 @@ body {
 .todo-item .actions button.delete-btn:hover{      
   background-color: #c82333;
 }
+.filter{
+  width: 100%;
+  /* background-color: red; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.filter button{
+  padding: 5px 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #007bff;
+}

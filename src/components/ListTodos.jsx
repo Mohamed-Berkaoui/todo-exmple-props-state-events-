@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import TodoItem from "./TodoItem";
+import Filter from "./Filter";
 
 function ListTodos(props) {
+  const [filter, setFilter] = useState("all");
+  console.log(filter);
   //{todos:,updateStatus}
   //where should we create this state? and why
 
@@ -11,9 +14,22 @@ function ListTodos(props) {
   // ];
   return (
     <div className="todos-list-container">
-      {props.todos.map((element) => (
-        <TodoItem todo={element} updateStatus={props.updateStatus} />
-      ))}
+      <Filter setFilter={setFilter} />
+      {props.todos
+        .filter((ele) =>
+          filter == "all"
+            ? true
+            : filter == "pending"
+              ? !ele.isDone
+              : ele.isDone,
+        )
+        .map((element) => (
+          <TodoItem
+            todo={element}
+            updateStatus={props.updateStatus}
+            deleteTodo={props.deleteTodo}
+          />
+        ))}
     </div>
   );
 }
