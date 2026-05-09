@@ -5,31 +5,23 @@ import Filter from "./Filter";
 function ListTodos(props) {
   const [filter, setFilter] = useState("all");
   console.log(filter);
-  //{todos:,updateStatus}
-  //where should we create this state? and why
-
-  // const todos = [
-  //   { id: 1, task: "Review hooks notes", isDone: false },
-  //   { id: 2, task: "Build a small UI", isDone: true },
-  // ];
+  const filterdTodos = props.todos.filter((ele) =>
+    filter == "all" ? true : filter == "pending" ? !ele.isDone : ele.isDone,
+  );
   return (
     <div className="todos-list-container">
       <Filter setFilter={setFilter} />
-      {props.todos
-        .filter((ele) =>
-          filter == "all"
-            ? true
-            : filter == "pending"
-              ? !ele.isDone
-              : ele.isDone,
-        )
-        .map((element) => (
+      {filterdTodos.length == 0 ? (
+        <h2>no todos</h2>
+      ) : (
+        filterdTodos.map((element) => (
           <TodoItem
             todo={element}
             updateStatus={props.updateStatus}
             deleteTodo={props.deleteTodo}
           />
-        ))}
+        ))
+      )}
     </div>
   );
 }
